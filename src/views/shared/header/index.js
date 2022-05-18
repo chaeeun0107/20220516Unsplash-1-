@@ -15,6 +15,8 @@ function Header() {
 }
 
 const Container = styled.div`
+  position: fixed;
+  width: 100%;
   padding: 0 20px;
   display: flex;
   //justify-content: space-between;
