@@ -1,11 +1,31 @@
 import styled from 'styled-components';
 
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 import { IconPhotoSearch, IconSearch } from '../../../icons';
 
 function SearchBox({ shape }) {
+  const navigate = useNavigate();
+
+  const [value, setValue] = useState('');
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate(`/s/photos/${value}`);
+  };
+
+  console.log('@@ value', value);
+
   return (
-    <Container className={`'SearchBox'${shape}`}>
-      <Form className={shape}>
+    <Container className={`SearchBox ${shape}`}>
+      <Form
+        className={shape}
+        onSubmit={handleSubmit}
+      >
         <Label className={shape}>
           <Button>
             <IconSearch />
@@ -13,7 +33,7 @@ function SearchBox({ shape }) {
           <Input
             type="text"
             placeholder="Search free high-resolution photos"
-            className={shape}
+            onChange={handleChange}
           />
           <Button className="photo">
             <IconPhotoSearch />
